@@ -34,6 +34,8 @@ class Account extends Model
                     'state' => 'set-up'
                 ]);
         }
+
+        Logger::log_change($id, 'set-up');
     }
 
     public static function activate($id)
@@ -46,6 +48,8 @@ class Account extends Model
                     'active' => true
                 ]);
         }
+
+        Logger::log_change($id, 'activated');
     }
 
     public static function deactivate($id)
@@ -57,5 +61,7 @@ class Account extends Model
                 'state' => $account_state,
                 'active' => false
             ]);
+
+        Logger::log_change($id, $account_state);
     }
 }
