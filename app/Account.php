@@ -24,4 +24,15 @@ class Account extends Model
                 'service_id' => $service_id
             ]);
     }
+
+    public static function to_setup($id)
+    {
+        if (Eligible::to_setup($id)) {
+        
+            static::find($id)
+                ->update([
+                    'state' => 'set-up'
+                ]);
+        }
+    }
 }

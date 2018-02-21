@@ -13,4 +13,14 @@ class Eligible
     {
         return Account::find($id)->only($info);
     }
+
+    public static function to_setup($id)
+    {
+        $info = static::get_info($id, ['service_id', 'state']);
+
+        $service_eligible = ($info['service_id'] > 0);
+        $state_eligible = ($info['state'] == 'confirmed');
+
+        return ($service_eligible and $state_eligible);
+    }
 }
