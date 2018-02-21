@@ -23,4 +23,11 @@ class Eligible
 
         return ($service_eligible and $state_eligible);
     }
+
+    public static function to_activate($id)
+    {
+        $info = static::get_info($id, ['state']);
+
+        return ($info['state'] == 'set-up');
+    }
 }

@@ -35,4 +35,16 @@ class Account extends Model
                 ]);
         }
     }
+
+    public static function activate($id)
+    {
+        if (Eligible::to_activate($id)) {
+
+            static::find($id)
+                ->update([
+                    'state' => 'active',
+                    'active' => true
+                ]);
+        }
+    }
 }
