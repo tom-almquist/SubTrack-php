@@ -16,4 +16,12 @@ class Account extends Model
                 'email' => $email
             ]);
         }
+
+    public static function add_service_id($id, $service_id)
+    {
+        static::find($id)
+            ->update([
+                'service_id' => $service_id
+            ]);
+    }
 }
