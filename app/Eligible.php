@@ -30,4 +30,15 @@ class Eligible
 
         return ($info['state'] == 'set-up');
     }
+
+    public static function deactivate_or_cancel($id)
+    {
+        $info = static::get_info($id, ['active', 'state']);
+
+        if ((!$info['active']) and ($info['state'] != 'deactivate')) {
+            return 'cancelled';
+        } else {
+            return 'deactivated';
+        }
+    }
 }

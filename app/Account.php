@@ -47,4 +47,15 @@ class Account extends Model
                 ]);
         }
     }
+
+    public static function deactivate($id)
+    {
+        $account_state = Eligible::deactivate_or_cancel($id);
+
+        static::find($id)
+            ->update([
+                'state' => $account_state,
+                'active' => false
+            ]);
+    }
 }
