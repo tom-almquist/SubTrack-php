@@ -69,4 +69,20 @@ class Account extends Model
     {
         return static::where('email', '=', $email)->first()->id;
     }
+
+    public static function collect_states($states, $return_ids = false)
+    {
+        $collection = new \Illuminate\Database\Eloquent\Collection;
+
+        foreach ($states as $state) {
+            $accounts = static::where('state', '=', $state)->get();
+            $collection = $collection->merge($accounts);
+        }
+
+        if ($return_ids) {
+            return $collection->pluck('id')->toArray();
+        } else {
+            return $collection;
+        }
+    }
 }
