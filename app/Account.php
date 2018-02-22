@@ -90,4 +90,36 @@ class Account extends Model
     {
         return static::where('active', '=', true)->get();
     }
+
+    /*
+     * This function returns a list of IDs that have been
+     * updated within the past interval
+     *
+     * Currently, this method only takes three intervals
+     * 'month' to check updates in the past month.
+     * 'week' to check the past week
+     * 'day' to check the past day 
+     *
+     *  NOTE: REFACTOR THIS!!!
+     */
+    public static function update_history($interval)
+    {
+        $format = 'Y-m-d H:m:s';
+
+        $past_date = new \DateTime('-1 ' . $interval);
+        $past_date = $past_date->format($format);
+
+        $ids = static::pluck('id')->toArray();
+
+        $ids_to_delete = [];
+
+        foreach ($ids as $id) {
+            $account_date = static::find($id)->updated_at->format($format);
+            if ($past_date > $account_date) {
+                $ids_to_delete[] = $id;
+            }
+        }
+        
+        return array_values(array_diff($ids, $ids_to_delete));
+    }
 }
