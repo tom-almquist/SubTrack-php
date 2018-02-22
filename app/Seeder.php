@@ -31,6 +31,10 @@ class Seeder
             if ($account_type >= 3) {
                 Account::to_setup($account_id);
             }
+
+            if ($account_type >= 4) {
+                Account::activate($account_id);
+            }
         }
     }
 }
