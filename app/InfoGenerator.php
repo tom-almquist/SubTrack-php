@@ -6,6 +6,7 @@ class InfoGenerator
 {
     protected static $vowels = 'aeiou';
     protected static $consonants  = 'bcdfghjklmnpqrstvwxyz';
+    protected static $chances = [1, 2, 2, 3, 3, 3, 4, 4, 4, 4];
 
     public static function account()
     {
@@ -18,9 +19,14 @@ class InfoGenerator
         return $account;
     }
 
-    public static function account_type($chances)
+    public static function account_type()
     {
-        return static::array_rand_value($chances);
+        return static::array_rand_value(static::$chances);
+    }
+
+    public static function rand_service_id()
+    {
+        return static::array_rand_value(Service::pluck('id')->toArray());
     }
 
     protected static function name($letters)
