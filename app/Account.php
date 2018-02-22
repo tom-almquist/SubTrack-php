@@ -64,4 +64,9 @@ class Account extends Model
 
         Logger::log_change($id, $account_state);
     }
+
+    public static function find_id($email)
+    {
+        return static::where('email', '=', $email)->first()->id;
+    }
 }
