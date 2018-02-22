@@ -11,6 +11,5 @@
 |
 */
 
-Route::get('/', function () {
-    return view('layouts.master');
-});
+
+Route::get('/', 'AccountController@index');

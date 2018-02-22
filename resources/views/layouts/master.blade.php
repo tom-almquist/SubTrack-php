@@ -25,7 +25,7 @@
 
         @include ('layouts.sidebar')
 
-        @include ('layouts.lorem')
+        @yield ('content')
 
       </div>
     </div>
@@ -39,7 +39,7 @@
     @include ('layouts.icons')
 
     <!-- Graphs -->
-    @include ('layouts.graph')
+    @yield ('graph')
 
   </body>
 </html>
