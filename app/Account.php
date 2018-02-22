@@ -85,4 +85,9 @@ class Account extends Model
             return $collection;
         }
     }
+
+    public static function collect_active()
+    {
+        return static::where('active', '=', true)->get();
+    }
 }
