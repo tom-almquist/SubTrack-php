@@ -2,6 +2,7 @@
 A simple CRM meant to advance my knowledge with PHP and Laravel.
 
 All you need to be able to run this is an installation of Laravel and a database compatible with what's described in the `.env` file--the current file requires a mysql database named `crmtest` with a username `root` and a blank password.
+
 To do that, follow the instructions at: https://laravel.com/docs/5.6/installation
 
 Once you can create a project with `laravel new blog` then you can clone this repository.
