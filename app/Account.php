@@ -122,4 +122,14 @@ class Account extends Model
         
         return array_values(array_diff($ids, $ids_to_delete));
     }
+
+    public static function push_to_active()
+    {
+        $inactive_ids = static::collect_states(['confirmed', 'set-up'], true);
+
+        foreach ($inactive_ids as $id) {
+            static::to_setup($id);
+            static::activate($id);
+        }
+    }
 }
