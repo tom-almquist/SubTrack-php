@@ -27,6 +27,10 @@ class Seeder
 
                 Account::add_service_id($account_id, $service_id);
             }
+
+            if ($account_type >= 3) {
+                Account::to_setup($account_id);
+            }
         }
     }
 }
