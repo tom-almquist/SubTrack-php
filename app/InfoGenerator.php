@@ -54,7 +54,7 @@ class InfoGenerator
         return (uniqid() . '@' . uniqid('', true));
     }
 
-    protected static function array_rand_value($array)
+    public static function array_rand_value($array)
     {
         return $array[array_rand($array)];
     }

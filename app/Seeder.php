@@ -36,5 +36,20 @@ class Seeder
                 Account::activate($account_id);
             }
         }
+
+        if ($cancel) {
+            static::seed_cancels();
+        }
+    }
+
+    protected static function seed_cancels()
+    {
+        $account_ids = Account::pluck('id')->toArray();
+        $to_cancel = (count($account_ids) / 10); //cancel 10% of all accounts
+
+        for ($to_cancel; $to_cancel > 0; $to_cancel--) {
+            $deactivate_id = InfoGenerator::array_rand_value($account_ids);
+            Account::deactivate($deactivate_id);
+        }
     }
 }
