@@ -41,4 +41,19 @@ class AccountController extends Controller
 
         return redirect('/');
     }
+
+    public function update()
+    {
+        $account_id = request('account_id');
+
+        $state = Acccount::find($account_id)->state;
+
+        if ($state == 'confirmed') {
+            Account::to_setup($account_id);
+        } else if ($state == 'set-up') {
+            Account::activate($account_id)
+        }
+
+        return redirect('/');
+    }
 }
