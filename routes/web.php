@@ -21,3 +21,7 @@ Route::get('/accounts/confirm', 'AccountController@confirm');
 /*  Service Controller Routes  */
 
 Route::get('/services', 'ServiceController@service_overview');
+
+Route::get('/services/create', 'ServiceController@create');
+
+Route::post('/services/create', 'ServiceController@store');
