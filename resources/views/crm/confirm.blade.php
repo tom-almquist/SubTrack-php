@@ -9,6 +9,9 @@
 			 	</div>
 			  	<div class="panel-body">
 			    	<form accept-charset="UTF-8" role="form" method="POST" action"/accounts">
+
+                      {{ csrf_field() }}
+
                     <fieldset>
                         <div class="form-group">
                             <select class="form-control" name="service_id">

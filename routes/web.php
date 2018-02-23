@@ -18,6 +18,8 @@ Route::get('/', 'AccountController@accounts_overview');
 
 Route::get('/accounts/confirm', 'AccountController@confirm');
 
+Route::post('/accounts/confirm', 'AccountController@store');
+
 /*  Service Controller Routes  */
 
 Route::get('/services', 'ServiceController@service_overview');

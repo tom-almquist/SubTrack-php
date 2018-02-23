@@ -24,4 +24,21 @@ class AccountController extends Controller
     {
         return view('crm.confirm');
     }
+
+    public function store()
+    {
+        $request = request(['service_id', 'first_name', 'last_name', 'email']);
+
+        Account::confirm(
+            $request['first_name'],
+            $request['last_name'],
+            $request['email']
+        );
+
+        $account_id = Account::find_id($request['email']);
+
+        Account::add_service_id($account_id, $request['service_id']);
+
+        return redirect('/');
+    }
 }
