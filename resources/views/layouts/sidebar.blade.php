@@ -2,15 +2,15 @@
           <div class="sidebar-sticky">
             <ul class="nav flex-column">
               <li class="nav-item">
-                <a class="nav-link active" href="#">
+                <a class="nav-link active" href="/">
                   <span data-feather="home"></span>
                   Accounts Overview <span class="sr-only">(current)</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/accounts/confirm">
                   <span data-feather="file"></span>
-                  Orders
+                  Create an Account
                 </a>
               </li>
               <li class="nav-item">

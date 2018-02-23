@@ -12,4 +12,6 @@
 */
 
 
-Route::get('/', 'AccountController@index');
+Route::get('/', 'AccountController@accounts_overview');
+
+Route::get('/accounts/confirm', 'AccountController@confirm');
