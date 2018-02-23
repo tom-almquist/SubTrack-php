@@ -9,6 +9,8 @@ Once you can create a project with `laravel new blog` then you can clone this re
 
 From there, go into the project root folder with a terminal and format your database by running `php artisan migrate`, then everything is accessible through `php artisan tinker`
 
+You may have to run `composer update` before you can run this app.
+
 The commands are:
 
 ---
