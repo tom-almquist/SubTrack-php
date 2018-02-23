@@ -10,37 +10,62 @@
               <li class="nav-item">
                 <a class="nav-link" href="/accounts/confirm">
                   <span data-feather="file"></span>
-                  Create an Account
+                  Create
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/accounts/set-up">
                   <span data-feather="shopping-cart"></span>
-                  Products
+                  Set-Up
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/accounts/activate">
                   <span data-feather="users"></span>
-                  Customers
+                  Activate
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="accounts/deactivate">
                   <span data-feather="bar-chart-2"></span>
-                  Reports
+                  Cancel
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="accounts/history">
                   <span data-feather="layers"></span>
-                  Integrations
+                  History
                 </a>
               </li>
             </ul>
 
+            <hr>
+
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link active" href="/services">
+                  <span data-feather="home"></span>
+                  Services Overview <span class="sr-only">(current)</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/services/create">
+                  <span data-feather="file"></span>
+                  Create
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/services/delete">
+                  <span data-feather="shopping-cart"></span>
+                  Delete
+                </a>
+              </li>
+            </ul>
+
+            <hr>
+
             <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-              <span>Saved reports</span>
+              <span>Reports</span>
               <a class="d-flex align-items-center text-muted" href="#">
                 <span data-feather="plus-circle"></span>
               </a>

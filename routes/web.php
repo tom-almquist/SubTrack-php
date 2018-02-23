@@ -12,6 +12,12 @@
 */
 
 
+/*  Account Controller Routes  */
+
 Route::get('/', 'AccountController@accounts_overview');
 
 Route::get('/accounts/confirm', 'AccountController@confirm');
+
+/*  Service Controller Routes  */
+
+Route::get('/services', 'ServiceController@service_overview');
