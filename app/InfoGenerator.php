@@ -6,7 +6,7 @@ class InfoGenerator
 {
     protected static $vowels = 'aeiou';
     protected static $consonants  = 'bcdfghjklmnpqrstvwxyz';
-    protected static $chances = [1, 2, 2, 3, 3, 3, 4, 4, 4, 4];
+    protected static $chances = [2, 2, 3, 3, 3, 4, 4, 4, 4];
 
     public static function account()
     {
