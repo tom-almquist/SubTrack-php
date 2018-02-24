@@ -25,6 +25,43 @@ class AccountController extends Controller
         return view('crm.confirm');
     }
 
+    public function setup()
+    {
+        return view('crm.setup');
+    }
+
+    public function activate()
+    {
+        return view('crm.activate');
+    }
+
+    public function cancellation()
+    {
+        return view('crm.deactivate');
+    }
+
+    public function mass_update()
+    {
+        Account::push_to_active();
+
+        return redirect('/');
+    }
+
+    public function update()
+    {
+        $account_id = request('account_id');
+
+        $state = Account::find($account_id)->state;
+
+        if ($state == 'confirmed') {
+            Account::to_setup($account_id);
+        } else if ($state == 'set-up') {
+            Account::activate($account_id);
+        }
+
+        return redirect('/');
+    }
+    
     public function store()
     {
         $request = request(['service_id', 'first_name', 'last_name', 'email']);
@@ -42,17 +79,11 @@ class AccountController extends Controller
         return redirect('/');
     }
 
-    public function update()
+    public function deactivate()
     {
         $account_id = request('account_id');
 
-        $state = Acccount::find($account_id)->state;
-
-        if ($state == 'confirmed') {
-            Account::to_setup($account_id);
-        } else if ($state == 'set-up') {
-            Account::activate($account_id)
-        }
+        Account::deactivate($account_id);
 
         return redirect('/');
     }

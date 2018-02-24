@@ -44,11 +44,12 @@ class Seeder
 
     protected static function seed_cancels()
     {
-        $account_ids = Account::pluck('id')->toArray();
-        $to_cancel = (count($account_ids) / 10); //cancel 10% of all accounts
+        $accounts = Account::collect_states(['confirmed', 'set-up', 'active']);
+        $active_ids = $accounts->pluck('id')->toArray();
+        $to_cancel = (count($active_ids) / 10); //cancel 10% of all accounts
 
         for ($to_cancel; $to_cancel > 0; $to_cancel--) {
-            $deactivate_id = InfoGenerator::array_rand_value($account_ids);
+            $deactivate_id = InfoGenerator::array_rand_value($active_ids);
             Account::deactivate($deactivate_id);
         }
     }

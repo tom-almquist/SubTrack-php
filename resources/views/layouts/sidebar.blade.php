@@ -14,7 +14,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/accounts/set-up">
+                <a class="nav-link" href="/accounts/setup">
                   <span data-feather="shopping-cart"></span>
                   Set-Up
                 </a>
@@ -32,9 +32,9 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="accounts/history">
+                <a class="nav-link" href="accounts/mass-update">
                   <span data-feather="layers"></span>
-                  History
+                  Mass-Update (Experimental, don't touch this yet)
                 </a>
               </li>
             </ul>
