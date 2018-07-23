@@ -10,19 +10,19 @@ class Account extends Model
 
     public static function confirm($first_name, $last_name, $email)
         {
-            static::create([
+            $newAccount = static::create([
                 'first_name' => $first_name,
                 'last_name' => $last_name,
                 'email' => $email
             ]);
+
+            return $newAccount;
         }
 
-    public static function add_service_id($id, $service_id)
+    public function add_service_id($service_id)
     {
-        static::find($id)
-            ->update([
-                'service_id' => $service_id
-            ]);
+        $this->service_id = $service_id;
+        $this->save();
     }
 
     public static function to_setup($id)
