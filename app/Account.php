@@ -25,31 +25,26 @@ class Account extends Model
         $this->save();
     }
 
-    public static function to_setup($id)
+    public function to_setup()
     {
-        if (Eligible::to_setup($id)) {
-        
-            static::find($id)
-                ->update([
-                    'state' => 'set-up'
-                ]);
+        if (Eligible::to_setup($this->id))
+        {
+            $this->state = 'set-up';
+            $this->save();
+            Logger::log_change($this->id, 'set-up');
         }
-
-        Logger::log_change($id, 'set-up');
     }
 
-    public static function activate($id)
+    public function activate()
     {
-        if (Eligible::to_activate($id)) {
+        if (Eligible::to_activate($this->id))
+        {
+            $this->state = 'active';
+            $this->active = true;
+            $this->save();
+            Logger::log_change($this->id, 'activated');
 
-            static::find($id)
-                ->update([
-                    'state' => 'active',
-                    'active' => true
-                ]);
         }
-
-        Logger::log_change($id, 'activated');
     }
 
     public static function deactivate($id)
