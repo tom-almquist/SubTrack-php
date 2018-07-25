@@ -77,9 +77,9 @@ class AccountController extends Controller
 
     public function deactivate()
     {
-        $account_id = request('account_id');
+        $account = Account::find(request('account_id'));
 
-        Account::deactivate($account_id);
+        $account->deactivate();
 
         return redirect('/');
     }

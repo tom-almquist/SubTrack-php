@@ -47,17 +47,15 @@ class Account extends Model
         }
     }
 
-    public static function deactivate($id)
+    public function deactivate()
     {
-        $account_state = Eligible::deactivate_or_cancel($id);
+        $account_state = Eligible::deactivate_or_cancel($this->id);
 
-        static::find($id)
-            ->update([
-                'state' => $account_state,
-                'active' => false
-            ]);
+        $this->state = $account_state;
+        $this->active = false;
+        $this->save();
 
-        Logger::log_change($id, $account_state);
+        Logger::log_change($this->id, $account_state);
     }
 
     public static function find_id($email)
