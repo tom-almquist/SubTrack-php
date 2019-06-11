@@ -19,7 +19,7 @@ class CreateAccountsTable extends Migration
             $table->string('last_name');
             $table->string('email');
             $table->integer('service_id')->default(0);
-            $table->state('state')->default('confirmed');
+            $table->string('state')->default('confirmed');
             $table->boolean('active')->default(false);
             $table->timestamps();
         });
