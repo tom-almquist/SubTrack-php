@@ -10,59 +10,52 @@ class Account extends Model
 
     public static function confirm($first_name, $last_name, $email)
         {
-            static::create([
+            $newAccount = static::create([
                 'first_name' => $first_name,
                 'last_name' => $last_name,
                 'email' => $email
             ]);
+
+            return $newAccount;
         }
 
-    public static function add_service_id($id, $service_id)
+    public function add_service_id($service_id)
     {
-        static::find($id)
-            ->update([
-                'service_id' => $service_id
-            ]);
+        $this->service_id = $service_id;
+        $this->save();
     }
 
-    public static function to_setup($id)
+    public function to_setup()
     {
-        if (Eligible::to_setup($id)) {
-        
-            static::find($id)
-                ->update([
-                    'state' => 'set-up'
-                ]);
+        if (Eligible::to_setup($this->id))
+        {
+            $this->state = 'set-up';
+            $this->save();
+            Logger::log_change($this->id, 'set-up');
         }
-
-        Logger::log_change($id, 'set-up');
     }
 
-    public static function activate($id)
+    public function activate()
     {
-        if (Eligible::to_activate($id)) {
+        if (Eligible::to_activate($this->id))
+        {
+            $this->state = 'active';
+            $this->active = true;
+            $this->save();
+            Logger::log_change($this->id, 'activated');
 
-            static::find($id)
-                ->update([
-                    'state' => 'active',
-                    'active' => true
-                ]);
         }
-
-        Logger::log_change($id, 'activated');
     }
 
-    public static function deactivate($id)
+    public function deactivate()
     {
-        $account_state = Eligible::deactivate_or_cancel($id);
+        $account_state = Eligible::deactivate_or_cancel($this->id);
 
-        static::find($id)
-            ->update([
-                'state' => $account_state,
-                'active' => false
-            ]);
+        $this->state = $account_state;
+        $this->active = false;
+        $this->save();
 
-        Logger::log_change($id, $account_state);
+        Logger::log_change($this->id, $account_state);
     }
 
     public static function find_id($email)

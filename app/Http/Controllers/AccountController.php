@@ -49,14 +49,12 @@ class AccountController extends Controller
 
     public function update()
     {
-        $account_id = request('account_id');
+        $account = Account::find(request('account_id'));
 
-        $state = Account::find($account_id)->state;
-
-        if ($state == 'confirmed') {
-            Account::to_setup($account_id);
-        } else if ($state == 'set-up') {
-            Account::activate($account_id);
+        if ($account->state == 'confirmed') {
+            $account->to_setup();
+        } else if ($account->state == 'set-up') {
+            $account->activate();
         }
 
         return redirect('/');
@@ -66,24 +64,22 @@ class AccountController extends Controller
     {
         $request = request(['service_id', 'first_name', 'last_name', 'email']);
 
-        Account::confirm(
+        $newAccount = Account::confirm(
             $request['first_name'],
             $request['last_name'],
             $request['email']
-        );
+        )->add_service_id($request['service_id']);;
 
-        $account_id = Account::find_id($request['email']);
-
-        Account::add_service_id($account_id, $request['service_id']);
+        //Account::add_service_id($account_id, $request['service_id']);
 
         return redirect('/');
     }
 
     public function deactivate()
     {
-        $account_id = request('account_id');
+        $account = Account::find(request('account_id'));
 
-        Account::deactivate($account_id);
+        $account->deactivate();
 
         return redirect('/');
     }
