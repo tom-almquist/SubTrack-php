@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Service;
 
-class DatabaseSeeder extends Seeder
+class ServiceTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,7 +12,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(ServiceTableSeeder::class);
-        $this->call(AccountTableSeeder::class);
+        factory(Service::class, 5)->create();
     }
 }
