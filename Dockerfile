@@ -32,7 +32,7 @@ RUN useradd -u 1000 -ms /bin/bash -g www www
 
 COPY . /var/www
 
-COPY --chown=www:www . /var/www
+RUN chown -R www:www /var/www
 
 USER www
 
