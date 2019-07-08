@@ -26,8 +26,6 @@ RUN docker-php-ext-install gd
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-RUN composer install
-
 # Add user for application
 RUN groupadd -g 1000 www
 RUN useradd -u 1000 -ms /bin/bash -g www www
@@ -37,6 +35,8 @@ COPY . /var/www
 RUN chown -R www:www /var/www
 
 USER www
+
+RUN composer install
 
 EXPOSE 9000
 CMD ["php-fpm"]
